@@ -50,7 +50,7 @@ if(isset($_GET['id']) && $_GET['id']!=''){
 
 if(isset($_POST['submit'])){
 	$categories_id=get_safe_value($con,$_POST['categories_id']);
-	$sub_categories_id=get_safe_value($con,$_POST['sub_categories_id']);
+	$sub_categories_id=mysqli_real_escape_string($con,$_POST['sub_categories_id']);
 	$name=get_safe_value($con,$_POST['name']);
 	$mrp=get_safe_value($con,$_POST['mrp']);
 	$price=get_safe_value($con,$_POST['price']);
@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
 	$meta_keyword=get_safe_value($con,$_POST['meta_keyword']);
 	$best_seller=get_safe_value($con,$_POST['best_seller']);
 	
-	$res=mysqli_query($con,"select * from product where name='$name' and $condition1");
+	$res=mysqli_query($con,"SELECT * from product where name='$name' /*&& $condition1*/");
 	$check=mysqli_num_rows($res);
 	if($check>0){
 		if(isset($_GET['id']) && $_GET['id']!=''){
@@ -93,7 +93,7 @@ if(isset($_POST['submit'])){
 		if(isset($_GET['id']) && $_GET['id']!=''){
 			if($_FILES['image']['name']!=''){
 				$image=rand(111111111,999999999).'_'.$_FILES['image']['name'];
-				move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH.$image);
+				move_uploaded_file($_FILES['image']['tmp_name'],"images/picture/".$image);
 				$update_sql="update product set categories_id='$categories_id',name='$name',mrp='$mrp',price='$price',qty='$qty',short_desc='$short_desc',description='$description',meta_title='$meta_title',meta_desc='$meta_desc',meta_keyword='$meta_keyword',image='$image',best_seller='$best_seller',sub_categories_id='$sub_categories_id' where id='$id'";
 			}else{
 				$update_sql="update product set categories_id='$categories_id',name='$name',mrp='$mrp',price='$price',qty='$qty',short_desc='$short_desc',description='$description',meta_title='$meta_title',meta_desc='$meta_desc',meta_keyword='$meta_keyword',best_seller='$best_seller',sub_categories_id='$sub_categories_id' where id='$id'";
@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
 			mysqli_query($con,$update_sql);
 		}else{
 			$image=rand(111111111,999999999).'_'.$_FILES['image']['name'];
-			move_uploaded_file($_FILES['image']['tmp_name'],PRODUCT_IMAGE_SERVER_PATH.$image);
+			move_uploaded_file($_FILES['image']['tmp_name'],"image/picture/".$image);
 			mysqli_query($con,"insert into product(categories_id,name,mrp,price,qty,short_desc,description,meta_title,meta_desc,meta_keyword,status,image,best_seller,sub_categories_id,added_by) values('$categories_id','$name','$mrp','$price','$qty','$short_desc','$description','$meta_title','$meta_desc','$meta_keyword',1,'$image','$best_seller','$sub_categories_id','".$_SESSION['ADMIN_ID']."')");
 		}
 		header('location:product.php');
@@ -195,7 +195,7 @@ if(isset($_POST['submit'])){
 								</div>
 								
 								<div class="form-group">
-									<label for="categories" class=" form-control-label">Meta Title</label>
+									<label for="categories" class=" form-control-label">Product Title</label>
 									<textarea name="meta_title" placeholder="Enter product meta title" class="form-control"><?php echo $meta_title?></textarea>
 								</div>
 								

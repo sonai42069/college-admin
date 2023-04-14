@@ -50,18 +50,18 @@ if(isset($_SESSION['ADMIN_LOGIN']) && $_SESSION['ADMIN_LOGIN']!=''){
                      <a href="vendor_management.php" > Admin Management</a>
                   </li>
 				  <li class="menu-item-has-children dropdown">
-                     <a href="categories.php" > Categories Master</a>
+                     <a href="categories.php" > Categories Management</a>
                   </li>
 				  <li class="menu-item-has-children dropdown">
                      <a href="sub_categories.php" > Sub Categories Master</a>
                   </li>
                   
 				  <li class="menu-item-has-children dropdown">
-                     <a href="users.php" > User Master</a>
+                     <a href="users.php" > User Management</a>
                   </li>
-				  <li class="menu-item-has-children dropdown">
+				  <!-- <li class="menu-item-has-children dropdown">
                      <a href="coupon_master.php" > Coupon Master</a>
-                  </li>
+                  </li> -->
 				  <li class="menu-item-has-children dropdown">
                      <a href="contact_us.php" > Contact Us</a>
                   </li>

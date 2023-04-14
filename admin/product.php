@@ -72,10 +72,10 @@ $res=mysqli_query($con,$sql);
 							   <td><?php echo $row['qty']?><br/>
 							   <?php
 							   $productSoldQtyByProductId=productSoldQtyByProductId($con,$row['id']);
-							   $pneding_qty=$row['qty']-$productSoldQtyByProductId;
+							   $pending_qty=$row['qty']-$productSoldQtyByProductId;
 							   
 							   ?>
-							   Pending Qty <?php echo $pneding_qty?>
+							   Pending Qty <?php echo $pending_qty?>
 							   
 							   </td>
 							   <td>

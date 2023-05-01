@@ -61,6 +61,7 @@ if(isset($_POST['submit'])){
                      <button type="submit" name="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
 					</form>
 					<div class="field_error"><?php echo $msg?></div>
+               <div class="link">If you forgot your password ?<a href="resetpass/password_recovery.php" style="text-decoration : none"> Click Here</a></div>
                </div>
             </div>
          </div>

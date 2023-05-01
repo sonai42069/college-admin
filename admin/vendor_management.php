@@ -22,7 +22,7 @@ if(isset($_GET['type']) && $_GET['type']!=''){
 	}
 }
 
-$sql="SELECT * from admin_users where role=1 order by id desc";
+$sql="SELECT * from admin_users where role=1 OR role=0 order by id desc";
 $res=mysqli_query($con,$sql);
 ?>
 <div class="content pb-0">
